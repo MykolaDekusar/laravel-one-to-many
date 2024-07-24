@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Type;
 use Illuminate\Support\Str;
 use App\Models\User;
 use PhpParser\Node\Stmt\Echo_;
@@ -25,7 +26,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $types = Type::all();
+        return view('admin.posts.create', compact('types'));
     }
 
     /**
@@ -35,15 +37,13 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
         // creo uno slug dal titolo e lo assegno al data
-
         $data['slug'] = Str::of($data['title'])->slug('-');
 
         $project = new Project();
         $project->fill($data);
-        $project->title = $data['title'];
         $project->save();
 
-        return redirect()->route('admin.projects.index')->with('message', `Articolo $project->title creato correttamente`);
+        return redirect()->route('admin.projects.index')->with('message', 'Articolo creato correttamente');
     }
 
     /**

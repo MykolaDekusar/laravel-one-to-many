@@ -1,6 +1,10 @@
 @use "./snippets/formStyle" as *;
 @import "~bootstrap/scss/bootstrap";
 
+#app,
+body {
+    background-color: rgb(47, 47, 47);
+}
 .page-link {
     color: black;
     .active {
@@ -15,6 +19,7 @@ a {
 
 .back-arrow {
     font-size: 1rem;
+    color: white;
 }
 
 .active {
@@ -22,6 +27,11 @@ a {
         background-color: rgb(38, 38, 38);
         border-color: white;
     }
+}
+.card {
+    background-color: rgb(146, 146, 146);
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .image {
@@ -43,4 +53,11 @@ a {
     border-radius: 10px;
     margin-top: 0.5rem;
     padding: 0.5rem;
+}
+
+.main-show {
+    height: 90dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
