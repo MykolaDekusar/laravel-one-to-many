@@ -16,11 +16,12 @@ class ProjectSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $post = new Project();
             $post->title = $faker->sentence(3);
+            $post->type_id = $faker->numberBetween(1, 7);
             $post->description = $faker->text();
-            $post->slug = Str::of($post->title)->slug('-');
+            $post->slug = Str::of($post->title)->slug();
             $post->image = 'https://picsum.photos/200/300';
             $post->save();
         }
