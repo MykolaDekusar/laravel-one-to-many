@@ -16,6 +16,8 @@ class ProjectSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
+        // clearing all table columns
+        Project::truncate();
         for ($i = 0; $i < 10; $i++) {
             $post = new Project();
             $post->title = $faker->sentence(3);

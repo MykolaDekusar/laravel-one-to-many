@@ -24,6 +24,20 @@
                             @enderror
                         </div>
                         <div class="form-content">
+                            <label for="type">Type: </label>
+                            <select name="type_id" id="type_id">
+                                <option value="">Seleziona Categoria</option>
+                                @foreach ($types as $type)
+                                    <option value="{{ $type->id }}"
+                                        {{ $type->id == old('type_id', $project->type_id) ? 'selected' : '' }}>
+                                        {{ $type->title }}</option>
+                                @endforeach
+                            </select>
+                            @error('type_id')
+                                <p class="error">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="form-content">
                             <label for="thumb">Image URL :</label>
                             <input type="text" name="image" value="{{ old('image', $project->image) }}">
                             @error('thumb')

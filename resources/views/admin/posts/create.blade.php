@@ -26,17 +26,19 @@
                             <select name="type_id" id="type_id">
                                 <option value="">Seleziona Categoria</option>
                                 @foreach ($types as $type)
-                                    <option value="{{ $type->id }}">{{ $type->title }}</option>
+                                    <option value="{{ $type->id }}" @if (old('type_id') == $type->id) selected @endif>
+                                        {{ $type->title }}</option>
                                 @endforeach
                             </select>
                             @error('type_id')
                                 <p class="error">{{ $message }}</p>
                             @enderror
                         </div>
-
                         <div class="form-content">
                             <label for="thumb">Image URL :</label>
-                            <input type="text" name="image">
+                            <input type="text" name="image"
+                                value={{ old('image') ?: 'https://picsum.photos/200/300' }}>
+
                             @error('thumb')
                                 <p class="error">{{ $message }}</p>
                             @enderror
